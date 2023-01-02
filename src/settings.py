@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     # MyApps
     'blog',
     'widget_tweaks',
+    'api',
+    'rest_framework',
 
     # Firstparty apps
 
