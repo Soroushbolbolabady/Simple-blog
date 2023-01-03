@@ -1,10 +1,25 @@
 from django.shortcuts import render
-from rest_framework.generics import ListAPIView
-from blog.models import Post
-from .serializers import PostSerializer
+from rest_framework.generics import ListAPIView , RetrieveUpdateDestroyAPIView
+from blog.models import Post , Category
+from .serializers import PostSerializer , CategorySerializer
 # Create your views here.
 
 
 class PostList(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+class PostDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    lookup_url_kwarg = 'pk'
+    serializer_class = PostSerializer
+
+
+class CategoryList(ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+class CategoryDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    lookup_url_kwarg = 'pk'
+    serializer_class = CategorySerializer
