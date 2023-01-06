@@ -2,12 +2,14 @@ from django.shortcuts import render
 from rest_framework.generics import ListAPIView , RetrieveUpdateDestroyAPIView
 from blog.models import Post , Category
 from .serializers import PostSerializer , CategorySerializer
+from .perimissions import IsOwnerOrReadOnly
 # Create your views here.
 
 
 class PostList(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = (IsOwnerOrReadOnly,)
 
 class PostDetail(RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
